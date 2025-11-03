@@ -17,8 +17,8 @@ require('razorpay-php/Razorpay.php');
 use Razorpay\Api\Api;
 
 // Initialize Razorpay
-$api_key = 'rzp_live_dfhtnkmedcTWBN';
-$api_secret = 'jzFO7kSdSOXJ7RLF7JeuyRoj';
+$api_key = 'rzp_live_D53J9UWwYtGimn';
+$api_secret = 'w0SnqzH2SOOIc0gnUR7cYO3r';
 
 // Amount calculation with safe checks
 $amount = (!empty($stud) && !empty($stud['amount'])) ? $stud['amount'] * 100 : 100;
@@ -230,11 +230,11 @@ function startPayment() {
                                     <div class="form-group">
                                         <label>Fees Category</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="category" id="categoryGeneral" value="A) Open/OBC/SEBC." onclick="getvalue('354')" required>
+                                            <input class="form-check-input" type="radio" name="category" id="categoryGeneral" value="A) Open/OBC/SEBC." onclick="getvalue('1')" required>
                                             <label class="form-check-label" for="categoryGeneral">A) Open/OBC/SEBC. = Rs 354/-</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="category" id="categorySC" value="B) SC/ST/VJ NT/SBC" onclick="getvalue('236')" required>
+                                            <input class="form-check-input" type="radio" name="category" id="categorySC" value="B) SC/ST/VJ NT/SBC" onclick="getvalue('1')" required>
                                             <label class="form-check-label" for="categorySC">B) SC/ST/VJ NT/SBC = Rs 236/-</label>
                                         </div>
                                     </div>
