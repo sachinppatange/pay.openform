@@ -4,34 +4,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 session_start();
 include_once '../config/config.php';
 include_once '../controller/ctrlgetStudDetails.php';
-// $studid = isset($_GET['studmaxid']) ? $_GET['studmaxid'] : null;
-
-// Safely get student id
-$studid = isset($_GET['studmaxid']) ? $_GET['studmaxid'] : null;
-
-// Safely get student details
-$stud = null;
-if ($studid) {
-    $stud = getStudentByStudId($studid);
-}
-
-
+$studid = $_GET['studmaxid'];
 //if($studid!=""){
 $stud = getStudentByStudId($studid);
 //print_r($stud);
