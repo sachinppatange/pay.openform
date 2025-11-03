@@ -43,20 +43,14 @@ session_start();
         }
     </style>
 </head>
-<!-- GOVINDLAL KANHAIYALAL JOSHI (NIGHT) COMMERCE COLLEGE, LATUR -->
+
 
 <body style="background-color:#87CEFA">
     <div class="container">
         <div class="card p-4 m-3">
             <div class="row">
                 <div class="col-md-6">
-                    <center><img class="mb-4" src="../assets/img/logo.jpg" width="40%" alt="Logo"></center>
-                    <center>
-                        <h4 style="color: #b1a8a8; font-size:14px;">Shri Tuljabhavani Temple Trust's,<br>
-Shri Tuljabhavani Sainiki Sec. & Higher Sec. School,Tuljapur</h4>
-                    </center>
                     
-                    <center><img src="../assets/img/login1.avif" width="50%" alt=""></center>
                 </div>
                 <div class="col-md-6">
                     <h4>Login</h4>
