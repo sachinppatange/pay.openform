@@ -7,9 +7,9 @@
  $GLOBALS['conn'] = mysqli_connect($host, $user, $pass, $dbname); */
 
 $host="localhost";
-$user="root";
-$pass="";
-$dbname="paytest";
+$user="u750208840_userpay";
+$pass="Latur@413512#";
+$dbname="u750208840_dbpay";
 $GLOBALS['conn'] = mysqli_connect($host, $user, $pass, $dbname);
 
 /*$host="localhost";
