@@ -4,10 +4,23 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 session_start();
 include_once '../config/config.php';
 include_once '../controller/ctrlgetStudDetails.php';
-$studid = $_GET['studmaxid'];
+$studid = isset($_GET['studmaxid']) ? $_GET['studmaxid'] : null;
 //if($studid!=""){
 $stud = getStudentByStudId($studid);
 //print_r($stud);
