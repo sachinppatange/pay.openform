@@ -1,81 +1,78 @@
 <?php
-// ==== DEBUG MODE ENABLE ====
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 include_once '../config/config.php';
 include_once '../controller/ctrlgetStudDetails.php';
+
+// Warning 1 fix: Safe GET access
 $studid = isset($_GET['studmaxid']) ? $_GET['studmaxid'] : null;
-//if($studid!=""){
-$stud = getStudentByStudId($studid);
-//print_r($stud);
+
+// Warning 2 fix: Only get student details if $studid is available
+$stud = null;
+if ($studid) {
+    $stud = getStudentByStudId($studid);
+}
+
 // Include the Razorpay PHP library
 require('razorpay-php/Razorpay.php');
 use Razorpay\Api\Api;
 
-// Initialize Razorpay with your key and secret
+// Initialize Razorpay
 $api_key = 'rzp_live_dfhtnkmedcTWBN';
 $api_secret = 'jzFO7kSdSOXJ7RLF7JeuyRoj';
 
-if ($stud['amount'] != "") {
-    $amount = $stud['amount'] * 100;
-} else {
-    $amount = 100;
-}
+// Warning 3 fix: Safe array access for 'amount'
+$amount = (!empty($stud) && !empty($stud['amount'])) ? $stud['amount'] * 100 : 100;
 
 $api = new Api($api_key, $api_secret);
-// Create an order
-$order = $api->order->create([
-    'amount' => $amount, // amount in paise (100 paise = 1 rupee)
-    'currency' => 'INR',
-    'receipt' => 'order_receipt_1001'
-]);
-// Get the order ID
-$order_id = $order->id;
 
-// Set your callback URL
-$callback_url = "https://registration.sainikividyalayatuljapur.in/web/paymentrecipt.php?chk=success";
-
-// Include Razorpay Checkout.js library
-echo '<script src="https://checkout.razorpay.com/v1/checkout.js"></script>';
-
-
-echo '<script>
-    function startPayment() {
-		
-    var options = {
-        key: "' . $api_key . '",
-        amount: ' . $order->amount . ',
-        currency: "' . $order->currency . '",
-        name: "' . $stud['surname'] . ' ' . $stud['firstname'] . '",
-        description: "Student Registration Fee",
-        image: "https://cdn.razorpay.com/logos/GhRQcyean79PqE_medium.png",
-        order_id: "' . $order_id . '",
-        theme: { color: "#738276" },
-        handler: function (response) {
-            // Payment success, redirect to portal
-            window.location.href = "./portal.php?chk=success&studid=' . $stud['stud_id'] . '";
-        },
-        prefill: {
-            name: "' . $stud['surname'] . ' ' . $stud['firstname'] . '",
-            email: "' . $stud['email'] . '",
-            contact: "' . $stud['whatsappno'] . '"
-        },
-        notes: {
-            address: "Customer Address"
-        },
-        modal: {
-            escape: false
-        }
-    };
-    var rzp = new Razorpay(options);
-    rzp.open();
+// Warning 4/5 fix: Only create order if $stud is not null
+$order_id = '';
+$order = null;
+if (!empty($stud)) {
+    $order = $api->order->create([
+        'amount' => $amount,
+        'currency' => 'INR',
+        'receipt' => 'order_receipt_1001'
+    ]);
+    $order_id = $order->id;
 }
 
+// Razorpay JS variables with safe values
+$surname = isset($stud['surname']) ? $stud['surname'] : '';
+$firstname = isset($stud['firstname']) ? $stud['firstname'] : '';
+$stud_id = isset($stud['stud_id']) ? $stud['stud_id'] : '';
+$email = isset($stud['email']) ? $stud['email'] : '';
+$whatsappno = isset($stud['whatsappno']) ? $stud['whatsappno'] : '';
+$order_amount = ($order && isset($order->amount)) ? $order->amount : $amount;
+$order_currency = ($order && isset($order->currency)) ? $order->currency : 'INR';
+
+echo '<script src="https://checkout.razorpay.com/v1/checkout.js"></script>';
+echo '<script>
+    function startPayment() {
+        var options = {
+            key: "' . $api_key . '",
+            amount: ' . $order_amount . ',
+            currency: "' . $order_currency . '",
+            name: "' . htmlspecialchars($surname . " " . $firstname, ENT_QUOTES) . '",
+            description: "Student Registration Fee",
+            image: "https://cdn.razorpay.com/logos/GhRQcyean79PqE_medium.png",
+            order_id: "' . $order_id . '",
+            theme: { color: "#738276" },
+            handler: function (response) {
+                window.location.href = "./portal.php?chk=success&studid=' . $stud_id . '";
+            },
+            prefill: {
+                name: "' . htmlspecialchars($surname . " " . $firstname, ENT_QUOTES) . '",
+                email: "' . htmlspecialchars($email, ENT_QUOTES) . '",
+                contact: "' . htmlspecialchars($whatsappno, ENT_QUOTES) . '"
+            },
+            notes: { address: "Customer Address" },
+            modal: { escape: false }
+        };
+        var rzp = new Razorpay(options);
+        rzp.open();
+    }
 </script>';
-//}
 ?>
 
 <?php
