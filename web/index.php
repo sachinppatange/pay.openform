@@ -20,7 +20,18 @@ error_reporting(E_ALL);
 session_start();
 include_once '../config/config.php';
 include_once '../controller/ctrlgetStudDetails.php';
+// $studid = isset($_GET['studmaxid']) ? $_GET['studmaxid'] : null;
+
+// Safely get student id
 $studid = isset($_GET['studmaxid']) ? $_GET['studmaxid'] : null;
+
+// Safely get student details
+$stud = null;
+if ($studid) {
+    $stud = getStudentByStudId($studid);
+}
+
+
 //if($studid!=""){
 $stud = getStudentByStudId($studid);
 //print_r($stud);
