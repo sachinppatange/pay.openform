@@ -11,8 +11,8 @@ require('razorpay-php/Razorpay.php');
 use Razorpay\Api\Api;
 
 // Initialize Razorpay with your key and secret
-$api_key = 'rzp_live_dfhtnkmedcTWBN';
-$api_secret = 'jzFO7kSdSOXJ7RLF7JeuyRoj';
+$api_key = 'rzp_live_D53J9UWwYtGimn';
+$api_secret = 'w0SnqzH2SOOIc0gnUR7cYO3r';
 if ($stud['amount'] != "") {
     $amount = $stud['amount'] * 100;
 } else {
@@ -323,7 +323,7 @@ echo '<script>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="category"
                                                 id="categoryGeneral" value="A) Open/OBC/SEBC."
-                                                onclick="getvalue('354')" required>
+                                                onclick="getvalue('1')" required>
                                             <label class="form-check-label" for="categoryGeneral">
                                                 A) Open/OBC/SEBC. = Rs 300 + Rs 54 (GST 18%) = Rs 354/- (सामान्य आणि
                                                 ओबीसी = ३०० रुपये + ५४ रुपये (जीएसटी १८%) एकूण ३५४/- रुपये)
@@ -331,7 +331,7 @@ echo '<script>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="category" id="categorySC"
-                                                value="B) SC/ST/VJ NT/SBC" onclick="getvalue('236')" required>
+                                                value="B) SC/ST/VJ NT/SBC" onclick="getvalue('1')" required>
                                             <label class="form-check-label" for="categorySC">
                                                 B) SC/ST/VJ NT/SBC = Rs 200 + Rs 36 (GST 18%) = Rs 236/-
                                                 (एससी/एसटी/व्हीजे एनटी/एसबीसी = २०० रुपये + ३६ रुपये (जीएसटी १८%) =
