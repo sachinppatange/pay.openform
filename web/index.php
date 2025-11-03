@@ -320,14 +320,14 @@ echo '<script>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="category"
                                                 id="categoryGeneral" value="A) Open/OBC/SEBC."
-                                                onclick="getvalue('354')" required>
+                                                onclick="getvalue('1')" required>
                                             <label class="form-check-label" for="categoryGeneral">
                                                 A) Open/OBC/SEBC. = Rs 300 + Rs 54 (GST 18%) = Rs 354/-
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="category" id="categorySC"
-                                                value="B) SC/ST/VJ NT/SBC" onclick="getvalue('236')" required>
+                                                value="B) SC/ST/VJ NT/SBC" onclick="getvalue('1')" required>
                                             <label class="form-check-label" for="categorySC">
                                                 B) SC/ST/VJ NT/SBC = Rs 200 + Rs 36 (GST 18%) = Rs 236/-
                                             </label>
