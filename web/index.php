@@ -19,16 +19,10 @@ use Razorpay\Api\Api;
 $api_key = 'rzp_live_dfhtnkmedcTWBN';
 $api_secret = 'jzFO7kSdSOXJ7RLF7JeuyRoj';
 
-// if ($stud['amount'] != "") {
-    // $amount = $stud['amount'] * 100;
-// } else {
-    // $amount = 100;
-// }
-
-
-$stud = null;
-if ($studid) {
-    $stud = getStudentByStudId($studid);
+if ($stud['amount'] != "") {
+    $amount = $stud['amount'] * 100;
+} else {
+    $amount = 100;
 }
 
 $api = new Api($api_key, $api_secret);
