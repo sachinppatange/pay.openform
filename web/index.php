@@ -17,8 +17,8 @@ require('razorpay-php/Razorpay.php');
 use Razorpay\Api\Api;
 
 // Initialize Razorpay
-$api_key = 'rzp_live_dfhtnkmedcTWBN';
-$api_secret = 'jzFO7kSdSOXJ7RLF7JeuyRoj';
+$api_key = 'rzp_live_D53J9UWwYtGimn';
+$api_secret = 'w0SnqzH2SOOIc0gnUR7cYO3r';
 
 // Warning 3 fix: Safe array access for 'amount'
 $amount = (!empty($stud) && !empty($stud['amount'])) ? $stud['amount'] * 100 : 100;
