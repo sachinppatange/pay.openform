@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 session_start();
 include_once '../config/config.php';
 include_once '../controller/ctrlgetStudDetails.php';
-$studid = $_GET['studmaxid'];
+$studid = isset($_GET['studmaxid']) ? $_GET['studmaxid'] : null;
 //if($studid!=""){
 $stud = getStudentByStudId($studid);
 //print_r($stud);
@@ -18,10 +18,17 @@ use Razorpay\Api\Api;
 // Initialize Razorpay with your key and secret
 $api_key = 'rzp_live_dfhtnkmedcTWBN';
 $api_secret = 'jzFO7kSdSOXJ7RLF7JeuyRoj';
-if ($stud['amount'] != "") {
-    $amount = $stud['amount'] * 100;
-} else {
-    $amount = 100;
+
+// if ($stud['amount'] != "") {
+    // $amount = $stud['amount'] * 100;
+// } else {
+    // $amount = 100;
+// }
+
+
+$stud = null;
+if ($studid) {
+    $stud = getStudentByStudId($studid);
 }
 
 $api = new Api($api_key, $api_secret);
